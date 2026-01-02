@@ -1,6 +1,5 @@
 import { defineConfig } from 'drizzle-kit'
 import fs from 'fs'
-import path from 'path'
 
 export default defineConfig({
   dialect: 'postgresql',
@@ -13,6 +12,11 @@ export default defineConfig({
     port: 5432,
     password: process.env.NUXT_H_PG_PASS as string,
     database: process.env.NUXT_H_PG_NAME as string,
-    ssl: { ca: fs.readFileSync(path.resolve(__dirname + '/config/sqlca.pem')).toString() },
+    ssl: { ca: fs.readFileSync('./server/db/config/sqlca.pem').toString() },
+  },
+
+  migrations: {
+    table: 'ba-migrations-table',
+    schema: 'public',
   },
 })

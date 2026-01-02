@@ -1,6 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', 'nuxt-nodemailer'],
   devtools: { enabled: true },
   compatibilityDate: '2025-07-15',
   eslint: {
@@ -13,6 +12,16 @@ export default defineNuxtConfig({
         arrowParens: true,
         braceStyle: 'stroustrup',
       },
+    },
+  },
+  nodemailer: {
+    from: process.env.NUXT_NODEMAILER_FROM,
+    host: process.env.NUXT_NODEMAILER_HOST,
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.NUXT_NODEMAILER_AUTH_USER,
+      pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
     },
   },
 })

@@ -9,5 +9,6 @@
       "fixable": true,
       "severity": "info"
     }
-  ]
+  ],
+  "eslint.validate": ["javascript", "typescript", "vue", "html", "markdown", "json", "json5", "jsonc", "css", "vue"],
 }
