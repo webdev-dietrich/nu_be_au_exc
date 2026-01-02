@@ -4,7 +4,7 @@ export default defineNitroPlugin((plugin) => {
   plugin.h3App.use(
     fromNodeMiddleware(
       cors({
-        origin: '*',
+        origin: ['https://nu-be-au-exc.vercel.app', 'http://localhost:3000'],
       }),
     ),
   )

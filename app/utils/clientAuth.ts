@@ -3,8 +3,7 @@ import { inferAdditionalFields, usernameClient, adminClient } from 'better-auth/
 import { ac, admin, user } from '@@/server/utils/permissions'
 
 export const authClient = createAuthClient({
-  baseURL: 'https://nu-be-au-exc.vercel.app',
-  basePath: '/api/auth',
+  baseURL: 'http://localhost:3000',
   trustedOrigins: ['https://nu-be-au-exc.vercel.app', 'http://localhost:3000'],
   plugins: [inferAdditionalFields({
     user: {
