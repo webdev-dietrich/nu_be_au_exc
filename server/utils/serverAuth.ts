@@ -9,6 +9,9 @@ import { hashPassword, verifyPassword } from './password'
 const sendMail = useNodeMailer()
 
 export const auth = betterAuth({
+  baseURL: 'https://nu-be-au-exc.vercel.app',
+  basePath: '/api/auth',
+  trustedOrigins: ['https://nu-be-au-exc.vercel.app', 'http://localhost:3000'],
   database: drizzleAdapter(db, {
     provider: 'pg',
     usePlural: false,
