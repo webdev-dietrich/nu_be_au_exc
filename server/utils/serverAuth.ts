@@ -11,7 +11,7 @@ const sendMail = useNodeMailer()
 export const auth = betterAuth({
   baseURL: 'https://nu-be-au-exc.vercel.app',
   basePath: '/api/auth',
-  trustedOrigins: ['https://nu-be-au-exc.vercel.app', 'http://localhost:3000'],
+  trustedOrigins: ['https://nu-be-au-exc.vercel.app', 'https://nu-be-au-gpthp1tz6-sascha-dietrichs-projects.vercel.app', 'http://localhost:3000'],
   database: drizzleAdapter(db, {
     provider: 'pg',
     usePlural: false,

@@ -7,7 +7,6 @@ const db = drizzle({
     port: 5432,
     host: process.env.NUXT_H_PG_HOST,
     password: process.env.NUXT_H_PG_PASS,
-    ssl: { ca: process.env.NUXT_H_PG_SSL_CA as string },
   },
 })
 
