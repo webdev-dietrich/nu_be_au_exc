@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       return navigateTo('/users/authentication')
     }
   }
-  if (session.value) {
+  else if (session.value) {
     if (from.path === '/users/authentication') {
       return navigateTo('/users/dashboard')
     }

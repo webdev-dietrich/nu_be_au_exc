@@ -6,8 +6,6 @@ import { username, admin as adminPlugin } from 'better-auth/plugins'
 import { ac, admin, user } from './permissions'
 import { hashPassword, verifyPassword } from './password'
 
-const sendMail = useNodeMailer()
-
 export const auth = betterAuth({
   baseURL: 'https://nu-be-au-exc.vercel.app',
   basePath: '/api/auth',
@@ -93,10 +91,16 @@ export const auth = betterAuth({
     },
     requireEmailVerification: false,
     sendResetPassword: async ({ user, url, token }) => {
-      void sendMail.sendMail({
-        to: user.email,
-        subject: 'Reset your password',
-        text: `Hallo ${user.name},\n\nBitte klicken Sie auf den folgenden Link, um Ihr Passwort zurück zu setzen:\n\nhttp://localhost:3000/verify-email?token=${token}\n\nAllternativ können Sie auch den folgenden Link verwenden: ${url}\n\nFalls Sie diese E-Mail nicht angefordert haben, können Sie sie einfach ignorieren.\n\nVielen Dank!`,
+      void await $fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: user.email,
+          subject: 'Reset your password',
+          text: `Hallo ${user.name},\n\nBitte klicken Sie auf den folgenden Link, um Ihr Passwort zurück zu setzen:\n\nhttp://localhost:3000/verify-email?token=${token}\n\nAllternativ können Sie auch den folgenden Link verwenden: ${url}\n\nFalls Sie diese E-Mail nicht angefordert haben, können Sie sie einfach ignorieren.\n\nVielen Dank!`,
+        }),
       })
     },
   },
@@ -108,10 +112,16 @@ export const auth = betterAuth({
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url, token }) => {
-      void sendMail.sendMail({
-        to: user.email,
-        subject: 'Bitte bestätigen Sie Ihre E-Mail-Adresse',
-        text: `Hallo ${user.name},\n\nBitte klicken Sie auf den folgenden Link, um Ihre E-Mail-Adresse zu bestätigen:\n\nhttp://localhost:3000/verify-email?token=${token}\n\nAllternativ können Sie auch den folgenden Bestätigungscode verwenden: ${url}\n\nFalls Sie diese E-Mail nicht angefordert haben, können Sie sie einfach ignorieren.\n\nVielen Dank!`,
+      void await $fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: user.email,
+          subject: 'Bitte bestätigen Sie Ihre E-Mail-Adresse',
+          text: `Hallo ${user.name},\n\nBitte klicken Sie auf den folgenden Link, um Ihre E-Mail-Adresse zu bestätigen:\n\nhttp://localhost:3000/verify-email?token=${token}\n\nAllternativ können Sie auch den folgenden Bestätigungscode verwenden: ${url}\n\nFalls Sie diese E-Mail nicht angefordert haben, können Sie sie einfach ignorieren.\n\nVielen Dank!`,
+        }),
       })
     },
     sendOnSignIn: true,
