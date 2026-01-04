@@ -6,6 +6,7 @@ const { data: session } = await authClient.useSession(useFetch)
 
 <template>
   <div>
+    <h1>Hallo Welt</h1>
     <pre>{{ session }}</pre>
   </div>
 </template>

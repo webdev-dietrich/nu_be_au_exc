@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', 'nuxt-nodemailer'],
+  modules: ['@nuxt/eslint', 'nuxt-nodemailer', '@vee-validate/nuxt', 'vuetify-nuxt-module', '@vueuse/nuxt'],
   devtools: { enabled: true },
   compatibilityDate: '2025-07-15',
   eslint: {
@@ -24,5 +24,17 @@ export default defineNuxtConfig({
       pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
     },
   },
-
+  veeValidate: {
+    autoImports: false,
+  },
+  vuetify: {
+    moduleOptions: {
+      /* module specific options */
+    },
+    vuetifyOptions: {
+      icons: {
+        defaultSet: 'mdi',
+      },
+    },
+  },
 })
